@@ -189,7 +189,7 @@ class ClapCaptionModel(nn.Module):
         if self.normalize_prefix:
             prefix = prefix / prefix.norm(2, -1).reshape(-1,1)
 
-        embedding_text = self.gpt.transformer.wte(tokens['input_ids'])
+        embedding_text = self.gpt.model.embed_tokens(tokens['input_ids'])
         prefix_projections = self.clap_project(prefix).view(-1, self.prefix_length, self.gpt_embedding_size)
         embedding_cat = torch.cat((prefix_projections, embedding_text), dim=1)
         if labels is not None:
