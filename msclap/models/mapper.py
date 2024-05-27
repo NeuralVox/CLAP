@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as nnf
 from enum import Enum
-from transformers import GPT2LMHeadModel
+from transformers import AutoModelForCausalLM
 from typing import Tuple, Optional
 
 def get_clapcap(name: str):
@@ -160,8 +160,8 @@ class ClapCaptionModel(nn.Module):
         self.clap = clap.audio_encoder
         self.prefix_length = prefix_length
         self.normalize_prefix = normalize_prefix
-        self.gpt = GPT2LMHeadModel.from_pretrained(text_decoder)
-        self.gpt_embedding_size = self.gpt.transformer.wte.weight.shape[1]
+        self.gpt = AutoModelForCausalLM.from_pretrained(text_decoder)
+        self.gpt_embedding_size = self.gpt.model.embed_tokens.weight.shape[0]
         if mapping_type == 'mlp':
             self.clap_project = MLP((prefix_size, (self.gpt_embedding_size * prefix_length) // 2,
                                      self.gpt_embedding_size * prefix_length))
