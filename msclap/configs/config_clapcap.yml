@@ -1,6 +1,6 @@
 # TEXT ENCODER CONFIG
 text_model: 'TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T'
-transformer_embed_dim: 768
+transformer_embed_dim: 3000
 freeze_text_encoder_weights: True
 
 # AUDIO ENCODER CONFIG
