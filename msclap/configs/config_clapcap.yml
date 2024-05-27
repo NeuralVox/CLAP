@@ -1,5 +1,5 @@
 # TEXT ENCODER CONFIG
-text_model: 'openai-community/gpt2-medium'
+text_model: 'TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T'
 transformer_embed_dim: 768
 freeze_text_encoder_weights: True
 
